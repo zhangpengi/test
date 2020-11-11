@@ -1,0 +1,91 @@
+-- 作业：
+-- 食堂管理系统
+drop database if exists cafeteria
+create database cafeteria character set utf8mb4
+drop table if exists cafeteria
+create table cafeteria
+(id int  primary key auto_increment,
+name varchar(20) comment 'name'
+);
+drop table if exists window
+create table window
+(id int primary key auto_increment,
+name varchar(20) comment 'name',
+cafeteria_id int,
+foreign key (cafeteria_id) references cafeteria(id)
+);
+drop table if exists charge
+create table charge
+(id int primary key auto_increment,
+name varchar(20),
+price decimal(4,2),
+window_id int,
+foreign key (window_id) references window(id)
+);
+
+-- 车辆违章系统
+drop database if exists cars
+create databese cars character set utf8mb4
+drop table if exists users
+create table users
+(id int primary key auto_increment, 
+name varchar(20) comment 'name',
+);
+drop table if exists car
+create table car
+(id int primary key auto_increment,
+brand varchar(20) comment 'brand',
+users_id int,
+foreign key (users_id) references users(id)
+);
+drop table if exists information
+create table information
+(id int primary key auto_increment,
+users_id int,
+car_id int,
+information varchar(30) comment 'information',
+foreign key (users_id) references users(id),
+foreign key (car_id) references car(id)
+);
+
+-- 学校宿舍管理系统
+drop database if exists drom
+create database drom character set utf8mb4
+drop table if exists student
+create table student
+(id int primary key auto_increment,
+sn int unique,
+name varchar(20) comment 'name',
+);
+drop table if exists dromitory
+create table dromitory
+(id int primary key auto_increment,
+sn int unique,
+student_id int,
+foreign key (student_id) references student(id)
+);
+drop table if exists record
+create table record
+(id int primary key auto_increment,
+dromitory_id int,
+student_id int,
+ststus varchar(30) comment 'ststus',
+foreign key (student_id) references student(id),
+foreign key (dromitory_id) references dromitory(id)
+);
+
+-- 考勤系统
+drop database if exists attence
+create database attence character set utf8mb4
+drop table if exists staff
+create table staff
+(id int primary key auto_increment,
+name varchar(20) comment 'name'
+);
+drop table if exists record
+create table record
+(id int primary key auto_increment,
+staff_id int,
+ststus varchar(20) comment 'ststus',
+foreign key (staff_id) references staff(id)
+);
