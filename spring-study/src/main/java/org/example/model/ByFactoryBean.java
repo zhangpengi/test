@@ -1,0 +1,21 @@
+package org.example.model;
+
+import org.springframework.beans.factory.FactoryBean;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ByFactoryBean implements FactoryBean<User> {
+
+    @Override
+    public User getObject() throws Exception {
+        User user = new User();
+        user.setUsername("老夫子");
+        user.setPassword("教学生顺便拯救世界");
+        return user;
+    }
+
+    @Override
+    public Class<?> getObjectType() {
+        return User.class;
+    }
+}
